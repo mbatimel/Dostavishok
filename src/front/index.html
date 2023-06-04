@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cssStartPage.css" type="text/css">
+    <link rel="stylesheet" href="./headMenu.css" type="text/css">
+    <link rel="stylesheet" href="./icons.css" type="text/css">
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js "></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js "></script>
+
+    <title>Доставичок</title>
+</head>
+<body >
+   <script src="https://kit.fontawesome.com/f9e12898d0.js" crossorigin="anonymous"></script>
+    <Head class="head">
+        <a class="company">Доставичок</a>
+    </Head>
+    
+        <div class="navigation">
+            <ul>
+                <li class="list active">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="text">Start</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#aboutwe">
+                        <span class="icon"><ion-icon name="information-circle-outline"></ion-icon></span>
+                        <span class="text">Info</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#myInput">
+                        <span class="icon"><ion-icon name="navigate-circle-outline"></ion-icon></span>
+                        <span class="text">Map</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#contacts">
+                        <span class="icon"><ion-icon name="call-outline"></ion-icon></ion-icon></span>
+                        <span class="text">Contacts</span>
+                    </a>
+                </li>
+                <div class="indicator"></div>
+            </ul>
+        </div>
+        <script>
+        const list = document.querySelectorAll('.list') ;
+        function activeLink()
+        {
+            list.forEach ((item) =>
+            item.classList.remove ('active'));
+            this.classList.add('active');
+        }
+        list. forEach((item)=>item.addEventListener ('click',activeLink));
+        </script>
+
+        <p1>
+        <a class="icon1"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon2"><i class="fa-solid fa-plane"></i></a>
+        <a class="icon3"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon4"><i class="fa-solid fa-train"></i></a>
+        <a class="icon5"><i class="fa-solid fa-plane"></i></a>
+        <a class="icon6"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon7"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon8"><i class="fa-solid fa-train"></i></a>
+        <a class="icon9"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon10"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon11"><i class="fa-solid fa-plane"></i></a>
+        <a class="icon12"><i class="fa-solid fa-train"></i></a>
+        <a class="icon13"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon14"><i class="fa-solid fa-plane"></i></a>
+        <a class="icon15"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon16"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon17"><i class="fa-solid fa-train"></i></a>
+        <a class="icon18"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon19"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon20"><i class="fa-solid fa-plane"></i></a>
+        <a class="icon21"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon22"><i class="fa-solid fa-train"></i></a>
+        <a class="icon23"><i class="fa-solid fa-plane"></i></a>
+        <a class="icon24"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon25"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon26"><i class="fa-solid fa-train"></i></a>
+        <a class="icon27"><i class="fa-solid fa-truck"></i></a>
+        <a class="icon28"><i class="fa-solid fa-ship"></i></a>
+        <a class="icon29"><i class="fa-solid fa-train"></i></a>
+        <a class="icon30"><i class="fa-solid fa-truck"></i></a>
+        </p1>
+        <a class="line"></a>
+        <a class="image"></a>
+        <a class="logistic" >Логистические услуги на все случаи жизни</a>
+        <a class="aboutwe" id="aboutwe">О нас</a>
+        <a class="info">Наша компания предоставляет широкий спектр услуг в сфере перевозки и доставки грузов. Мы предоставляем возможность нашим клиентам рассчитать скорость доставки их груза на наши склады для дальнейшего перевоза их в другую страну. Для этого наша уникальная система использует алгоритм Форда-Беллмана, который помогает рассчитать наиболее кратчайший маршрут от вас до нужного вам склада.В составе нашей команды опытные специалисты, которые способны на высочайшем уровне решить каждую поставленную задачу. Мы ответственны и честны перед клиентами, всегда готовы к максимально быстрому реагированию на поданную заявку, а обращение к нам возможно в режиме 24/7. 
+            Вы можете доверить нам не только перевозку груза, 
+            но и ведение всей отчетности по заказу. Мы не подведем.</a>
+        <a class="map">Расчет времени грузоперевозки</a>
+        <div>
+        <label >Адрес отправкти груза:</label>
+        <input  id="myInput" >
+        <button class="button" onclick="getData()">Расчет</button>
+        <button class="button2" onclick="getTable()">построение таблицы</button>
+        </div>
+
+        <div id="yandexmap"class="yandexmap"></div>
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=0e5fa334-27a4-4676-bf24-013d49efac7e&lang=ru_Ru"></script>
+        <script src="script.js"></script>
+        <div class="content"></div>
+    </main>
+    
+    <footer> <a class="contacts" id="contacts">Заинтересовались? Вот наши контакты:</a>
+    </footer>
+</body>
+</html>

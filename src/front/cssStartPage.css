@@ -1,0 +1,207 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    position: relative;
+    width: 1440px;
+    height: 3500px;
+    background: #000000;
+    transition:0.5s ;
+}
+.heaf{
+    height: 111px;
+    width: 1430px;
+}
+.company{
+    position: absolute;
+    width: 154px;
+    height: 36px;
+    left: calc(50% - 154px/2 - 601px);
+    top: 30px;
+    font-family: 'Kelly Slab';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.line{
+    position: absolute;
+    width: 1430px;
+    height: 0px;
+    left: 0px;
+    top: 111px;
+    border: 5px solid #FFFFFF;
+    transform: rotate(-0.04deg);
+}
+.image{
+        position: absolute;
+    width: 1156px;
+    height: 635px;
+    left: 142px;
+    top: 235px;
+
+    background: url(./img/photo.png);
+    opacity: 0.7;
+    border-radius: 51px;
+}
+.logistic{
+    position: absolute;
+    width: 570px;
+    height: 36px;
+    left: 416px;
+    top: 750px;
+    font-family: 'Kelly Slab';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+.aboutwe{
+        position: absolute;
+    width: 140px;
+    height: 63px;
+    left: 100px;
+    top: 1050px;
+
+    font-family: 'Krona One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 70px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+.info{
+    position: absolute;
+width: 1279px;
+height: 456px;
+left: 80px;
+top: 1090px;
+
+font-family: 'Krona One';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 38px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+}
+.contacts{
+    position: absolute;
+width: 231px;
+height: 54px;
+left: 44px;
+top: 3400px;
+
+font-family: 'Kdam Thmor';
+font-style: normal;
+font-weight: 400;
+font-size: 25px;
+line-height: 54px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+}
+.map{
+        position: absolute;
+    width: 481px;
+    height: 54px;
+    left: 80px;
+    top: 1550px;
+
+    font-family: 'Kdam Thmor';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+.yandexmap{
+    position: absolute;
+    width: 1300px;
+    height: 800px;
+    background-color: white;
+    left: 80px;
+    top: 1700px;
+}
+label {
+   
+    position: absolute;
+    display: block;
+    font-family: 'Kdam Thmor';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 54px;
+    color: white;
+    left: 80px;
+    top: 1630px;
+}
+.double_click{position: absolute;
+    display: block;
+    font-family: 'Kdam Thmor';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 54px;
+    color: white;
+    left: 650px;
+    top: 1630px;}
+
+input {
+    position: absolute;
+    margin: 0.4rem 0;
+    left: 328px;
+    top: 1648px;
+    border-radius: 8px;
+}
+.button{
+    position: absolute;
+    display: block;
+    font-family: 'Kdam Thmor';
+    font-style: normal;
+    width: 90px;
+    height: 30px;
+    font-size: 20px;
+    left: 545px;
+    text-align: center;
+    align-items: center;
+    top: 1643px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+.button2{
+    position: absolute;
+    display: block;
+    font-family: 'Kdam Thmor';
+    font-style: normal;
+    width: 90px;
+    height: 30px;
+    font-size: 20px;
+    left: 700px;
+    text-align: center;
+    align-items: center;
+    top: 1643px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
