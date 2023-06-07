@@ -29,6 +29,8 @@ var mapinit
 var multiRoute
 //пемерменная масс сторон графа
 var graphmass=[]
+// Отрисованные маршруты
+var multiroutes=[]
 
 async function getData() {
     if(yourpos != null)
@@ -165,16 +167,16 @@ async function init(){
     .add(placemark3).add(placemark4).add(placemark5).add(placemark6).add(placemark7);
    
 }
+// построение маршрутов
 async function createRoute()
 {
-    var multiroutes=[]
+   
     if(yourpos == null)
     {
-        for( i =0; i<multiroutes.length;i++){
-            await mapinit.geoObjects.remove(multiroutes[i]);
-            console.log("удален старый маршрут")
-        }
-        
+        console.log("удален старый маршрут")
+        multiroutes.forEach(function(multiroute) {
+            mapinit.geoObjects.remove(multiroute);
+          });
     }
      // Создадим мультимаршрут и добавим его на карту.
     var multiRoute = await new ymaps.multiRouter.MultiRoute({
@@ -296,7 +298,15 @@ async function createRoute()
 
     
 }
+// создание времени пути
 async function createactiveway(){
+    
+    // var storages = [storage1,storage2,storage3,storage4,storage5,storage6,storage7]
+    // storages.forEach(function(storage,index) {
+    //     graphmas=null;
+        
+    // });
+
     // маршурут от вас до 1-ого склада
     var RouteY1=  new ymaps.multiRouter.MultiRoute({
         
@@ -697,7 +707,6 @@ async function createactiveway(){
     });
    
 }
-
 ymaps.ready(init);
 // Функция для поиска кратчайших путей от стартовой вершины
   async function bellmanFord(edges, startVertex) {
@@ -731,6 +740,7 @@ ymaps.ready(init);
     return distances;
   }
 //   Создание таблицы
+
   async function createTable(distances) {
     var table = document.createElement("table");
     var tableBody = document.createElement("tbody");
