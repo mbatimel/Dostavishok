@@ -28,15 +28,7 @@ var mapinit
 // глобальная переменная маршрута 
 var multiRoute
 //пемерменная масс сторон графа
-graphmass=[]
-
-
-// примеры
-// Московская область, Одинцово, микрорайон Новая Трёхгорка, Кутузовская улица, 19
-// Московская область, Одинцовский городской округ, рабочий посёлок Новоивановское, Амбулаторная улица, 64
-// [55.714338569019205,37.37394049999996]
-// Москва, Волоколамское шоссе, 116, стр. 7
-// [55.83066456890089,37.414732499999985]
+var graphmass=[]
 
 async function getData() {
     if(yourpos != null)
@@ -55,7 +47,7 @@ async function getData() {
             function (result) {
                 yourAddress =  result.geoObjects.get(0).geometry.getCoordinates();
                 console.log(yourAddress);
-                yourpos= new ymaps.Placemark([yourAddress[0],yourAddress[1]],{},{
+                yourpos=  new ymaps.Placemark([yourAddress[0],yourAddress[1]],{},{
 
                 iconLayout: 'default#image',
                 iconImageHref:'./img/placeholder.png',
@@ -71,16 +63,17 @@ async function getData() {
             
             
         );
-    createRoute();
+    await createRoute();
     
         
      
 } 
 async function getTable(){
-    await usingalgoritm();
+    await createactiveway();
     console.log("граф"+graphmass);
-    shurtway();
+    await shurtway();
 }
+// инициализация яндекс карты
 async function init(){
     mapinit = await  new ymaps.Map('yandexmap',{
         center: center,
@@ -174,10 +167,19 @@ async function init(){
 }
 async function createRoute()
 {
+    var multiroutes=[]
+    if(yourpos == null)
+    {
+        for( i =0; i<multiroutes.length;i++){
+            await mapinit.geoObjects.remove(multiroutes[i]);
+            console.log("удален старый маршрут")
+        }
+        
+    }
      // Создадим мультимаршрут и добавим его на карту.
-    multiRoute = await new ymaps.multiRouter.MultiRoute({
+    var multiRoute = await new ymaps.multiRouter.MultiRoute({
             
-        referencePoints: [textyouraddress, storage1, storage2, storage3, storage4, storage5, storage6, storage7],
+        referencePoints: [textyouraddress, storage1],
         params: {
             avoidTrafficJams: true,
             routingMode: "auto"  
@@ -187,10 +189,11 @@ async function createRoute()
         routeStrokeWidth: 2,
         routeActiveStrokeWidth: 6,
     });
+    multiroutes[0]=multiRoute;
     mapinit.geoObjects.add(multiRoute);
 
 
-    multiRoute2 = await new ymaps.multiRouter.MultiRoute({
+    var multiRoute2 = await new ymaps.multiRouter.MultiRoute({
         
         referencePoints: [textyouraddress,storage7],
         params: {
@@ -205,9 +208,10 @@ async function createRoute()
         routeActiveStrokeColor: "#E63E92",
         
     });
+    multiroutes[1] = multiRoute2;
     mapinit.geoObjects.add(multiRoute2);
 
-    multiRoute3 = await new ymaps.multiRouter.MultiRoute({
+    var multiRoute3 = await new ymaps.multiRouter.MultiRoute({
         
         referencePoints: [textyouraddress,storage6],
         params: {
@@ -221,9 +225,10 @@ async function createRoute()
         routeActiveStrokeColor: "#009a63",
         
     });
+    multiroutes[2] = multiRoute3;
     mapinit.geoObjects.add(multiRoute3);
 
-    multiRoute4 = await new ymaps.multiRouter.MultiRoute({
+    var multiRoute4 = await new ymaps.multiRouter.MultiRoute({
         
         referencePoints: [textyouraddress,storage5],
         params: {
@@ -237,9 +242,10 @@ async function createRoute()
         routeActiveStrokeColor: "#30626b",
         
     });
+    multiroutes[3] = multiRoute4;
     mapinit.geoObjects.add(multiRoute4);
     
-    multiRoute5 = await new ymaps.multiRouter.MultiRoute({
+    var multiRoute5 = await new ymaps.multiRouter.MultiRoute({
         
         referencePoints: [textyouraddress,storage4],
         params: {
@@ -253,8 +259,9 @@ async function createRoute()
         routeActiveStrokeColor: "#4c3c18",
         
     });
+    multiroutes[4] = multiRoute5;
     mapinit.geoObjects.add(multiRoute5);
-    multiRoute6 = await new ymaps.multiRouter.MultiRoute({
+   var multiRoute6 = await new ymaps.multiRouter.MultiRoute({
         
         referencePoints: [textyouraddress,storage3],
         params: {
@@ -268,8 +275,9 @@ async function createRoute()
         routeActiveStrokeColor: "#45161c",
         
     });
+    multiroutes[5] = multiRoute6;
     mapinit.geoObjects.add(multiRoute6);
-    multiRoute7 = await new ymaps.multiRouter.MultiRoute({
+    var multiRoute7 = await new ymaps.multiRouter.MultiRoute({
         
         referencePoints: [textyouraddress,storage2],
         params: {
@@ -283,10 +291,12 @@ async function createRoute()
         routeActiveStrokeColor: "#270a1f",
         
     });
+    multiroutes[6] = multiRoute7;
     mapinit.geoObjects.add(multiRoute7);
+
     
 }
-async function usingalgoritm(){
+async function createactiveway(){
     // маршурут от вас до 1-ого склада
     var RouteY1=  new ymaps.multiRouter.MultiRoute({
         
@@ -296,7 +306,7 @@ async function usingalgoritm(){
             routingMode: "auto"  
         }
     });
-     RouteY1.model.events.add('requestsuccess', async function() {
+     RouteY1.model.events.add('requestsuccess',  function() {
         // Получение ссылки на активный маршрут.
         var activeRoute = RouteY1.getActiveRoute();
         graphmass[0] = activeRoute.properties.get("duration").text.replace(/мин./g, "");
@@ -687,12 +697,13 @@ async function usingalgoritm(){
     });
    
 }
-ymaps.ready(init); 
-  // Функция для поиска кратчайших путей от стартовой вершины
-  function bellmanFord(edges, startVertex) {
-    const distances = {};
+
+ymaps.ready(init);
+// Функция для поиска кратчайших путей от стартовой вершины
+  async function bellmanFord(edges, startVertex) {
+    const distances = [];
     const previousVertices = {};
-    
+
   
     // Инициализация расстояний и предыдущих вершин
     distances[startVertex] = 0;
@@ -717,11 +728,35 @@ ymaps.ready(init);
       }
     });
   
-    return { distances, previousVertices };
+    return distances;
   }
+//   Создание таблицы
+  async function createTable(distances) {
+    var table = document.createElement("table");
+    var tableBody = document.createElement("tbody");
   
-  // Пример использования
-  function shurtway(){
+    distances.forEach(function(distance, index) {
+      var row = document.createElement("tr");
+      var cell1 = document.createElement("td");
+      if(index != 0)
+        {
+        cell1.textContent = "Время в пути от вас до склада с номером № " + index ;
+        var cell2 = document.createElement("td");
+        cell2.textContent = distance !== Infinity ? distance.toString() : "Недостижимо";
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        tableBody.appendChild(row);
+        }
+      
+    });
+  
+    table.appendChild(tableBody);
+    var tableContainer = document.querySelector("#tableContainer");
+    tableContainer.innerHTML = "";
+    tableContainer.appendChild(table);
+  }
+//  запись данных
+  async function shurtway(){
     const edges = [
       { source: 0, target: 1, weight: parseInt(graphmass[0])  },
       { source: 0, target: 2, weight: parseInt(graphmass[1])  },
@@ -754,9 +789,21 @@ ymaps.ready(init);
     ];
     
     const startVertex = 0;
-    const { distances, previousVertices } = bellmanFord(edges, startVertex);
+    try {
+        let distances = await bellmanFord(edges, startVertex);
+        if (Array.isArray(distances)) {
+          console.log('Кратчайшие расстояния:');
+          console.log(distances);
     
-    console.log('Кратчайшие расстояния:');
-    console.log(distances);
-    document.querySelector('.content').innerHTML='<table? class="way"></table?'
+          createTable(distances);
+    
+          console.log("Завершение работы");
+        } else {
+          throw new Error("distances не является массивом");
+        }
+      } catch (error) {
+        console.error("Ошибка при вычислении кратчайших расстояний:", error);
+      }
   }
+  
+

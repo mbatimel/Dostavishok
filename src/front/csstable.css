@@ -1,0 +1,26 @@
+#tableContainer{
+    position: absolute;
+    width: 1200px;
+    height: 705px;
+    background-color: white;
+    left: 120px;
+    top: 2570px;
+    border: 3px solid grey;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    
+}
+ td {
+    
+    border-bottom: 3px solid grey;
+    border-radius: 10px;
+    width: 1100px;
+    height: 100px;
+ }
+ td:first-child {
+    text-align: center;
+}
+ td:last-child{
+    text-align: center;
+ }

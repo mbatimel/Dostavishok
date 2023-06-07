@@ -7,18 +7,21 @@
     <link rel="stylesheet" href="./cssStartPage.css" type="text/css">
     <link rel="stylesheet" href="./headMenu.css" type="text/css">
     <link rel="stylesheet" href="./icons.css" type="text/css">
+    <link rel="stylesheet" href="./csstable.css" type="text/css">
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js "></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js "></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=0e5fa334-27a4-4676-bf24-013d49efac7e&lang=ru_Ru"></script>
+    <script src="script.js"></script>
 
     <title>Доставичок</title>
 </head>
 <body >
    <script src="https://kit.fontawesome.com/f9e12898d0.js" crossorigin="anonymous"></script>
-    <Head class="head">
+    <header class="head">
         <a class="company">Доставичок</a>
-    </Head>
+    
     
         <div class="navigation">
             <ul>
@@ -59,7 +62,8 @@
         }
         list. forEach((item)=>item.addEventListener ('click',activeLink));
         </script>
-
+        <a class="line"></a>
+    </header>
         <p1>
         <a class="icon1"><i class="fa-solid fa-ship"></i></a>
         <a class="icon2"><i class="fa-solid fa-plane"></i></a>
@@ -92,7 +96,7 @@
         <a class="icon29"><i class="fa-solid fa-train"></i></a>
         <a class="icon30"><i class="fa-solid fa-truck"></i></a>
         </p1>
-        <a class="line"></a>
+        
         <a class="image"></a>
         <a class="logistic" >Логистические услуги на все случаи жизни</a>
         <a class="aboutwe" id="aboutwe">О нас</a>
@@ -101,15 +105,14 @@
             но и ведение всей отчетности по заказу. Мы не подведем.</a>
         <a class="map">Расчет времени грузоперевозки</a>
         <div>
-        <label >Адрес отправкти груза:</label>
-        <input  id="myInput" >
-        <button class="button" onclick="getData()">Расчет</button>
-        <button class="button2" onclick="getTable()">построение таблицы</button>
+            <label for="myInput">Адрес отправкти груза:</label>
+            <input type="text" id="myInput" name="firstname" placeholder="Your address...">
+            
+            <button class="button" onclick="getData()">Расчет</button>
+            <button id="shurtwayButton" class="button2" onclick="getTable()">построение таблицы</button>
         </div>
-
         <div id="yandexmap"class="yandexmap"></div>
-        <script src="https://api-maps.yandex.ru/2.1/?apikey=0e5fa334-27a4-4676-bf24-013d49efac7e&lang=ru_Ru"></script>
-        <script src="script.js"></script>
+        <div id="tableContainer"></div>
         <div class="content"></div>
     </main>
     
