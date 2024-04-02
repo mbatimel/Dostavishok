@@ -4,7 +4,7 @@
     const previousVertices = {};
     
   
-    // Инициализация расстояний и предыдущих вершин
+    // Инициализация расстояний и предыдущих вершинами
     distances[startVertex] = 0;
     previousVertices[startVertex] = null;
   
